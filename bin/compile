@@ -1,20 +1,12 @@
 #!/usr/bin/env bash
 
-function indent() {
-	c='s/^/       /'
-	case $(uname) in
-		Darwin) sed -l "$c";;
-		*)      sed -u "$c";;
-	esac
-}
-
 BUILD_DIR="$1"
-SOURCE_DIR="$(dirname $0)/../fonts.tar.gz"
+SOURCE="$(dirname $0)/../ShagExpert-Lounge.otf"
 TARGET_DIR="$BUILD_DIR/.fonts"
 
-echo "-----> Extracting fonts to $TARGET_DIR"
+echo "-----> Copying fonts to $TARGET_DIR"
 
 mkdir -p "$TARGET_DIR"
-tar -xvzf "$SOURCE_DIR" -C "$TARGET_DIR" | indent
+cp "$SOURCE" "$TARGET_DIR"
 
 fc-cache -fv
